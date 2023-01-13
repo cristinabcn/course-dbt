@@ -34,9 +34,7 @@ from not_null_delivery
 
 Question 4 : How many users have only made one purchase? Two purchases? Three+ purchases?
 
-1 Purchase: 25
-2 Purchases: 28
-+ 3 Purchases 71
+1 Purchase: 25, 2 Purchases: 28, more than 3 Purchases: 71
 
 
 WITH purchases_by_user AS (

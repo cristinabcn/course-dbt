@@ -4,13 +4,13 @@
 Question 1 : How many users do we have?
 130 Distinct Users
 
-SELECT COUNT (DISTINCT user_id) FROM
-stg_postgres_users
+SELECT COUNT (DISTINCT user_id) 
+FROM stg_postgres_users
 
 
 
 Question 2 : On average, how many orders do we receive per hour?
-361 orders / 48 h + 7,52 orders per hour on average
+7,52 orders per hour on average
 
 
 SELECT 
@@ -20,7 +20,7 @@ FROM stg_postgres_orders
 
 
 Question 3: On average, how long does an order take from being placed to being delivered?
- It takes 3,89 days on average to deliver an order since it's placed
+It takes 3,89 days on average to deliver an order since it's placed
 
 with not_null_delivery as
 (select * from stg_postgres_orders
@@ -33,7 +33,6 @@ from not_null_delivery
 
 
 Question 4 : How many users have only made one purchase? Two purchases? Three+ purchases?
-
 1 Purchase: 25, 2 Purchases: 28, more than 3 Purchases: 71
 
 
@@ -43,7 +42,11 @@ SELECT COUNT (DISTINCT order_id) AS "Purchases by User",
 FROM STG_POSTGRES_ORDERS
 GROUP BY 2)
 
-SELECT count(DISTINCT user_id), "Purchases by User"
+SELECT count(DISTINCT user_id), 
+CASE WHEN "Purchases by User" = 1 then '1 Purchase'
+     WHEN "Purchases by User" = 2 then '2 Purchases'
+     WHEN "Purchases by User" > 2 then '+3 Purchases'
+     END                  AS  "Purchases by User"
 FROM purchases_by_user
 GROUP BY 2
 

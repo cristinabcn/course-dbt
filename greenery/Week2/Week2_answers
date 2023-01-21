@@ -1,0 +1,71 @@
+## Part 1: Models
+ **What is our repeat user rate?** <br>
+- The user repeat rate is 0,798
+
+```SQL
+WITH orders_by_user AS (
+SELECT COUNT (DISTINCT order_id) AS "Orders by User", 
+       user_id
+FROM STG_POSTGRES_ORDERS
+GROUP BY 2)
+,
+
+recurrent_users AS(
+SELECT  user_id, 
+CASE WHEN "Orders by User" > 1 then 1
+ELSE 0 END      AS "Recurring"           
+FROM orders_by_user
+)
+
+SELECT 
+count(distinct user_id) AS total_users,
+sum("Recurring") AS recurring_users,
+div0(recurring_users,total_users)
+from recurrent_users
+```
+
+
+ **What are good indicators of a user who will likely purchase again?** <br>
+ - High order prices, purchased recently, usage of discounts <br>
+ **What about indicators of users who are likely NOT to purchase again?** <br>
+ - High return rate, churn / drop out rate<br>
+ **If you had more data what features would you want to look into to answer this question?** <br>
+ - KPIs that reflect Customer Satisfaction such as NPS. <br> 
+
+
+ 
+
+ **Explain the marts models you added. WHy did you organize the models in the way you did?** <br>
+
+ **Dimemnsions:**
+ - I added the user dimension. This is a table which is relevant to all business areas and therefore is nested under marts_core. This dimension is an enriched table containing all user details and adding information about addresses.
+ - I also added a promo dimension in marts_marketing. This table provides a view of the dimensions and fields that show the status (Active, inactive) as well as discount segmen (high or low).
+
+ **Facts:** 
+ - I built a fact fct_product_orders. The aim of this one is to show all products and enrich them with the aggregated number of sales by product, since this is a key area for analyzing product performance.
+ - In the previous intermediate table I joined orders with order items and products to extract all required columns.
+
+
+
+## Part 2: dbt Tests
+
+**What assumptions are you making about each model? (i.e. why are you adding each test?)Did you find any “bad” data as you added and ran tests on your models?How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?**<br>
+- I added tests for certain staging table such as orders and events. 
+- I used the not_null test to ensure there are no missing ids in the primary key colums, since this can affect the data down the lineage when joining with other tables. 
+- Also, I used the unique test to check that there are no duplicates in the unique identifiers. 
+
+
+
+## Part 3: dbt Snapshots
+
+**Which orders changed from week 1 to week 2?**<br>
+
+ 265f9aae-561a-4232-a78a-7052466e46b7
+ e42ba9a9-986a-4f00-8dd2-5cf8462c74ea
+ b4eec587-6bca-4b2a-b3d3-ef2db72c4a4f
+
+```SQL
+select order_id
+from snapshot_order
+where dbt_valid_to is not null
+```

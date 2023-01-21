@@ -5,10 +5,22 @@ models:
     description: Addresses on file
   - name: stg_postgres_events
     description: Information about events like sessions, users, products, and created/updated times
+    columns:
+      - name: session_id
+        description: Primary key for events
+        tests:
+          - not_null
+          - unique
   - name: stg_postgres_order_items
     description: Items that were included in specific orders
   - name: stg_postgres_orders
     description: Order info such as user, cost, tracking, and delivery times
+    columns:
+      - name: order_id
+        description: Primary key for orders
+        tests:
+          - not_null
+          - unique
   - name: stg_postgres_products
     description: Products offered for sale
   - name: stg_postgres_promos

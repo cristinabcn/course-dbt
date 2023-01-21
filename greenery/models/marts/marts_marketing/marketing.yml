@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: dim_promos
+    description: This table displays the promotions with status and range of discount
+       

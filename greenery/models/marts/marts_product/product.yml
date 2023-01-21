@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: fct_product_orders
+    description: This table displays every product with the quantity of orders.
+   
+       

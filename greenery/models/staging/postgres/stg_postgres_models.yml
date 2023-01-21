@@ -1,17 +1,17 @@
 version: 2
 
 models:
-  - name: stg_postgres__addresses
+  - name: stg_postgres_addresses
     description: Addresses on file
-  - name: stg_postgres__events
+  - name: stg_postgres_events
     description: Information about events like sessions, users, products, and created/updated times
-  - name: stg_postgres__order_items
+  - name: stg_postgres_order_items
     description: Items that were included in specific orders
-  - name: stg_postgres__orders
+  - name: stg_postgres_orders
     description: Order info such as user, cost, tracking, and delivery times
-  - name: stg_postgres__products
+  - name: stg_postgres_products
     description: Products offered for sale
-  - name: stg_postgres__promos
+  - name: stg_postgres_promos
     description: Promo codes and their discounts and active status
-  - name: stg_postgres__users
+  - name: stg_postgres_users
     description: User account information like name, email, phone, address

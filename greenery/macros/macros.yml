@@ -1,0 +1,7 @@
+version: 2
+
+macros:
+    - name: grant
+      description: 'Provide permission to a role in a model'
+    - name: positive_values
+      description: 'Positive values in columns test'

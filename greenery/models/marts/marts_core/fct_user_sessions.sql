@@ -6,4 +6,4 @@
 
 
     select  *
-    from {{ ref('int_session_events_agg')}}
+    from {{ ref('int_session_events_macro_agg')}}

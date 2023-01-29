@@ -19,7 +19,7 @@ from base
 Q2: What is our conversion Rate by Product?
 
 - Answer:
-String of pearls	0.609375
+String of pearls	  m gre0.609375
 Arrow Head	        0.555556
 Pilea Peperomioides	0.474576
 Jade Plant	        0.478261
@@ -72,7 +72,7 @@ from base
 group by product_name
 ```
 
-# PART 5: Snapshot Which orders changed from week 2 to week 3? 
+# PART 5: Snapshot - Which orders changed from week 2 to week 3? 
 
 - Answer: These are the orders that changed from Week 2 to Week 3:
 29d20dcd-d0c4-4bca-a52d-fc9363b5d7c6, c0873253-7827-4831-aa92-19c38372e58d, e2729b7d-e313-4a6f-9444-f7f65ae8db9a

@@ -3,3 +3,4 @@ version: 2
 models:
   - name: fct_user_sessions
   - name: dim_users
+  - name: fct_conversion_rate
